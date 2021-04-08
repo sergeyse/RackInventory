@@ -1,0 +1,156 @@
+
+<div ng-controller="MaingridCtrl">
+
+
+    <div class="form-group">
+        <form name="rackNr">
+        <div>
+            <label>Rack number:</label>
+            <input type="number" ng-model="rackNumber" class="form-control" required autofocus>
+        </div>
+        <p> </p>
+        <div>
+            <button type="button" class="btn btn-danger" ng-disabled="rackNr.$invalid "  ng-click="openModal()">Skrá Út</button>
+            <button type="button" class="btn btn-success" ng-disabled="rackNr.$invalid "  ng-click="openModalRecHome()">Skrá INN</button>
+        </div>
+        </form>
+    </div>
+    <p/>
+
+    <!--<div ng-controller="MaingridCtrl" >-->
+    <div>
+
+        <div id="grid" ui-grid="gridOptions" ui-grid-edit ui-grid-row-edit ui-grid-cellNav ui-grid-resize-columns
+             ui-grid-move-columns class="grid"></div>
+    </div>
+
+
+    <!--============================MODAL REC OUT ===============================-->
+
+
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">Leiga út rekka nr. <b class="label label-danger">{{modalRackN}}</b></h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <!-- <ul>
+                 <li ng-repeat="item in $ctrl.items">
+                     <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item }}</a>
+                 </li>
+             </ul>-->
+            <!--FORM -->
+
+            <form name="outForm" class="form-horizontal">
+                <div class="form-group">
+                    <label for="orderNr" class="col-sm-2 control-label">Pontun</label>
+                    <div class="col-sm-10">
+                        <input type="number" ng-model="order.number" ng-maxlength="6" class="form-control" id="orderNr"
+                               placeholder="Pönturnar nr." autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button class="btn btn-info" ng-disabled="outForm.$invalid " ng-click="fetch()">Sækja
+                            upplysingar
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Nafn" class="col-sm-2 control-label">Nafn</label>
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="order.name" class="form-control" id="Nafn" placeholder="Nafn">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address" class="col-sm-2 control-label">Heimilisfang</label>
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="order.delivaddress" class="form-control" id="address"
+                               placeholder="Heimilisfand">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone" class="col-sm-2 control-label">Siminn</label>
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="order.delivphone" class="form-control" id="phone"
+                               placeholder="Siminn">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <!--  <div class="btn-group col-sm-offset-2 col-sm-10" role="group" aria-label="...">
+                          <button type="button" class="btn btn-default" ng-model="order.rType" btn-radio="'Út keyrsla'">Út keyrsla</button>
+                          <button type="button" class="btn btn-default" ng-model="order.rType" btn-radio="'Lánað'">Lánað</button>
+                          <button type="button" class="btn btn-default" ng-model="order.rType" btn-radio="'Út leiga'">Út leiga</button>
+                      </div>-->
+                    <div class="btn-group col-sm-offset-2 col-sm-10" role="group" aria-label="...">
+                        <label class="btn btn-info" ng-model="order.rType" uib-btn-radio="'Út keyrsla'" uncheckable>Út
+                            keyrsla</label>
+                        <label class="btn btn-info" ng-model="order.rType" uib-btn-radio="'Lánað'"
+                               uncheckable>Lánað</label>
+                        <label class="btn btn-info" ng-model="order.rType" uib-btn-radio="'Út leiga'"
+                               uib-uncheckable="uncheckable">Út leiga</label>
+                    </div>
+
+                </div>
+
+
+                <!--        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> Remember me
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">Sign in</button>
+                            </div>
+                        </div>-->
+            </form>
+            <!--  Selected:  <b>{{modalRackN}}</b>-->
+
+            <div>
+                <h2>
+                    <span >Prenta út leigusaming ?</span>
+                </h2>
+                <button class="btn btn-default">Prenta</button>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-disabled="outForm.$invalid || outForm.$pristine"
+                    ng-click="ok()">OK
+            </button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+
+    <!--============================END MODAL===============================-->
+
+    <!--============================ BEGIN MODAL REC IN (come home) ===============================-->
+    <script type="text/ng-template" id="myModalContentIn.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-titleIn">Skrá rekkan  {{modalRackNinn}} inn.</h3>
+        </div>
+        <div class="modal-body" id="modal-bodyIn">
+            Yttu á OK ef þið viljið skrá rekkan inn.
+        <!--    <ul>
+                <li ng-repeat="item in $ctrl.items">
+                    <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item }}</a>
+                </li>
+            </ul>
+            Selected: <b>{{ $ctrl.selected.item }}</b>-->
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+   <!--     <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>-->
+    </script>
+
+
+    <!--============================END MODAL REC IN ===============================-->
+
+</div>

@@ -1,0 +1,28 @@
+
+
+
+<div class="form-group">
+    <form name="rackNr">
+        <div>
+            <label>Rack number:</label>
+            <input type="number" ng-model="rackNumber" class="form-control" required autofocus>
+        </div>
+        <p></p>
+        <div>
+            <a ng-href="#!/historysearch/{{rackNumber}}">
+                <button type="button" class="btn btn-danger" ng-disabled="rackNr.$invalid " >
+                    Leita
+                </button>
+            </a>
+
+        </div>
+    </form>
+</div>
+<p/>
+
+<!--
+
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="(rackNr, val) in resp.data">{{rackNr}}</li>
+</ul>
+-->

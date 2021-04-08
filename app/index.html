@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="gridApp">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a href="#!/maingrid">Rekkar</a></li>
+      <li role="presentation"><a href="#!/statistic">Statistic</a></li>
+      <li role="presentation"><a href="#!/homegrid">Racks at home</a></li>
+      <li role="presentation"><a href="#!/history">History</a></li>
+      <li role="presentation"><a href="#!/housekeeping">Housekeeping</a></li>
+    </ul>
+
+    <div class="container" style="height: 800px">
+    <div ng-view=""></div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <p><span  ></span>  Ispan EHF </p>
+      </div>
+    </div>
+
+
+
+
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
+    <script src="bower_components/papaparse/papaparse.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-app.js"></script>
+
+    <!-- Add additional services that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-functions.js"></script>
+
+    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "*******",
+            authDomain: "rack.firebaseapp.com",
+            databaseURL: "https://rack.firebaseio.com",
+            projectId: "rack-5a4f6",
+            storageBucket: "rack-5a4f6.appspot.com",
+            messagingSenderId: "*************",
+            appId: "***************"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/maingrid.js"></script>
+        <script src="scripts/controllers/modalinstance.js"></script>
+        <script src="scripts/controllers/modalinstancein.js"></script>
+    <script src="scripts/controllers/modalDelete.js"></script>
+        <script src="scripts/controllers/statistic.js"></script>
+        <script src="scripts/controllers/history.js"></script>
+        <script src="scripts/controllers/historysearch.js"></script>
+        <script src="scripts/controllers/homegrid.js"></script>
+        <script src="scripts/controllers/housekeeping.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
